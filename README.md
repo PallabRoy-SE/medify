@@ -1,4 +1,4 @@
-# MEDIFY - Medical Center Slot Booking Platform [Demo](https://expense-tracker-six-dun.vercel.app)
+# MEDIFY - Medical Center Slot Booking Platform [Demo](https://medify-zeta.vercel.app/)
 
 A web application that allows users to find medical centers in a specific state and city across the USA and book appointments.
 
@@ -43,4 +43,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Deployment
 
-This project was deployed in vercel [Take a look](https://expense-tracker-six-dun.vercel.app)
+This project was deployed in vercel [Take a look](https://medify-zeta.vercel.app/)
