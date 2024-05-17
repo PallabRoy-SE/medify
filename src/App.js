@@ -1,12 +1,11 @@
-import { Button, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import theme from "./theme/theme";
+import Layout from "./pages/layout/Layout";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Button color="primary" variant="contained">
-        Medify
-      </Button>
+      <Layout />
     </ThemeProvider>
   );
 }

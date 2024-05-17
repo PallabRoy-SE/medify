@@ -1,19 +1,20 @@
 import { createTheme } from "@mui/material/styles";
+import { colors, fonts } from "./variables";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#2AA8FF",
+      main: colors.primary,
     },
     secondary: {
-      main: "#1B3C74",
+      main: colors.secondary,
     },
     background: {
-      default: "#FFFFFF",
+      default: colors.white,
     },
   },
   typography: {
-    fontFamily: ["Poppins", "sans-serif"].join(","),
+    fontFamily: fonts.poppins,
   },
 });
 
