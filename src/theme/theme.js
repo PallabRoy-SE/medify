@@ -1,21 +1,30 @@
-import { createTheme } from "@mui/material/styles";
-import { colors, fonts } from "./variables";
+import { createTheme } from '@mui/material/styles';
+import { colors, fonts } from './variables';
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: colors.primary,
+    palette: {
+        primary: {
+            main: colors.primary,
+        },
+        secondary: {
+            main: colors.secondary,
+        },
+        background: {
+            default: colors.white,
+        },
     },
-    secondary: {
-      main: colors.secondary,
+    typography: {
+        fontFamily: fonts.poppins,
     },
-    background: {
-      default: colors.white,
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    textTransform: 'capitalize',
+                },
+            },
+        },
     },
-  },
-  typography: {
-    fontFamily: fonts.poppins,
-  },
 });
 
 export default theme;
