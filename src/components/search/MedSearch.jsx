@@ -6,10 +6,10 @@ import MedButton from "../button/MedButton";
 import { colors } from "../../theme/variables";
 import { getCities } from "../../services/searchService";
 
-function MedSearch({ states = [], getValue }) {
+function MedSearch({ states = [], state, city, getValue, sx }) {
   const [cities, setCities] = useState([]);
-  const [selectedState, selectState] = useState("");
-  const [selectedCity, selectCity] = useState("");
+  const [selectedState, selectState] = useState(state ?? "");
+  const [selectedCity, selectCity] = useState(city ?? "");
 
   const loadCities = async (state) => {
     if (state) {
@@ -45,6 +45,7 @@ function MedSearch({ states = [], getValue }) {
         padding: "2rem",
         flexDirection: "row",
         gap: "2%",
+        ...sx,
       }}
     >
       <MedAutocomplete
@@ -62,6 +63,7 @@ function MedSearch({ states = [], getValue }) {
         sx={{
           width: "30%",
         }}
+        value={selectedState}
       />
       <MedAutocomplete
         options={cities}
@@ -78,6 +80,7 @@ function MedSearch({ states = [], getValue }) {
         sx={{
           width: "50%",
         }}
+        value={selectedCity}
       />
       <MedButton
         startIcon={

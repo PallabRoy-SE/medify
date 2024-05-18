@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { colors } from "../../theme/variables";
 
-function MedCardContainer({ children, ...attributes }) {
+function MedCardContainer({ elevate = true, sx, children, ...attributes }) {
   return (
     <Box
       component="section"
@@ -11,7 +11,8 @@ function MedCardContainer({ children, ...attributes }) {
         height: "100%",
         backgroundColor: colors.white,
         borderRadius: "0.875rem",
-        boxShadow: "6px 6px 35px 0px #1028511C",
+        boxShadow: elevate ? "6px 6px 35px 0px #1028511C" : "none",
+        ...sx,
       }}
       {...attributes}
     >

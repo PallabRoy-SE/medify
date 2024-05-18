@@ -1,4 +1,4 @@
-import { fetchCities, fetchStates } from "../api/searchApi";
+import { fetchCities, fetchHospitals, fetchStates } from "../api/searchApi";
 
 export const getStates = () => {
   return new Promise(async (resolve, reject) => {
@@ -19,6 +19,20 @@ export const getCities = (stateName) => {
       }
       const cities = await fetchCities(stateName);
       resolve(cities);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const getHospitals = (state, city) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!state || !city) {
+        throw new Error("State and city name required !");
+      }
+      const hospitals = await fetchHospitals(state, city);
+      resolve(hospitals);
     } catch (error) {
       reject(error);
     }
