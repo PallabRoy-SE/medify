@@ -1,23 +1,23 @@
-import { Box, Container, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import MedHeader from '../../components/header/MedHeader';
-import MedCardContainer from '../../components/card-container/MedCardContainer';
-import MedSearch from '../../components/search/MedSearch';
-import useGeneric from '../../hooks/genericHook';
-import { useSearchParams } from 'react-router-dom';
-import { CheckCircleOutlineOutlined } from '@mui/icons-material';
-import { colors } from '../../theme/variables';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
-import leftBanner from '../../assets/left_banner.png';
-import { getHospitals } from '../../services/searchService';
-import MedHospitalDetails from '../../components/hospital-details/MedHospitalDetails';
+import { Box, Container, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import MedHeader from "../../components/header/MedHeader";
+import MedCardContainer from "../../components/card-container/MedCardContainer";
+import MedSearch from "../../components/search/MedSearch";
+import useGeneric from "../../hooks/genericHook";
+import { useSearchParams } from "react-router-dom";
+import { CheckCircleOutlineOutlined } from "@mui/icons-material";
+import { colors } from "../../theme/variables";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import leftBanner from "../../assets/left_banner.png";
+import { getHospitals } from "../../services/searchService";
+import MedHospitalDetails from "../../components/hospital-details/MedHospitalDetails";
 
 function Hospitals() {
   const { states } = useGeneric();
   const [searchParams] = useSearchParams();
   const [hospitals, setHospitals] = useState([]);
-  const [state, setState] = useState(searchParams.get('state'));
-  const [city, setCity] = useState(searchParams.get('city'));
+  const [state, setState] = useState(searchParams.get("state"));
+  const [city, setCity] = useState(searchParams.get("city"));
 
   const loadHospitals = async (state, city) => {
     try {
@@ -39,18 +39,18 @@ function Hospitals() {
   }, []);
 
   return (
-    <Box component='section'>
+    <Box component="section">
       <MedHeader />
       <Container
-        maxWidth='lg'
+        maxWidth="lg"
         sx={{
-          marginTop: '-3rem',
+          marginTop: "-3rem",
         }}
       >
         <MedCardContainer>
           <MedSearch
             sx={{
-              padding: '1.5rem',
+              padding: "1.5rem",
             }}
             states={states}
             state={state}
@@ -60,36 +60,39 @@ function Hospitals() {
         </MedCardContainer>
       </Container>
       <Container
-        maxWidth='lg'
+        maxWidth="lg"
         sx={{
-          marginBlock: '5rem',
+          marginBlock: "5rem",
         }}
       >
         <Box
-          component='div'
+          component="div"
           sx={{
-            paddingInline: '1rem',
-            marginBottom: '1.5rem',
+            paddingInline: "1rem",
+            marginBottom: "1.5rem",
           }}
         >
           <Typography
-            component='p'
+            component="p"
             sx={{
               fontWeight: 500,
-              fontSize: '1.5rem',
+              fontSize: "1.5rem",
             }}
           >
             {hospitals.length} medical centers available in {city}
           </Typography>
-          <Typography component='p' sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <Typography
+            component="p"
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
             <CheckCircleOutlineOutlined
               sx={{
                 color: colors.textGrey,
-                marginRight: '1.5rem',
+                marginRight: "1.5rem",
               }}
             />
             <Typography
-              component='span'
+              component="span"
               sx={{
                 color: colors.textGrey,
               }}
@@ -102,31 +105,35 @@ function Hospitals() {
           <Grid2 md={8}>
             {hospitals.map((hospital) => (
               <MedHospitalDetails
-                id={hospital['Provider ID']}
-                title={hospital['Hospital Name']}
+                key={hospital["Provider ID"]}
+                id={hospital["Provider ID"]}
+                title={hospital["Hospital Name"]}
                 state={hospital.State}
                 city={hospital.City}
-                zipCode={hospital['ZIP Code']}
-                type={hospital['Hospital Type']}
+                zipCode={hospital["ZIP Code"]}
+                type={hospital["Hospital Type"]}
                 likes={
-                  hospital['Hospital overall rating'] !== 'Not Available' ? hospital['Hospital overall rating'] : 0
+                  hospital["Hospital overall rating"] !== "Not Available"
+                    ? hospital["Hospital overall rating"]
+                    : 0
                 }
+                hospitalData={hospital}
               />
             ))}
           </Grid2>
           <Grid2 md={4}>
             <Box
-              component='div'
+              component="div"
               sx={{
-                height: '15rem',
+                height: "15rem",
               }}
             >
               <MedCardContainer
                 elevate={false}
                 sx={{
-                  backgroundColor: 'transparent',
+                  backgroundColor: "transparent",
                   background: `url(${leftBanner}) no-repeat 1.5% center`,
-                  backgroundSize: '225%',
+                  backgroundSize: "225%",
                 }}
               ></MedCardContainer>
             </Box>

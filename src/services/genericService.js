@@ -1,3 +1,4 @@
+import moment from "moment";
 import { navItems } from "../utils/constants";
 import { getStates } from "./searchService";
 
@@ -20,4 +21,30 @@ export const getNavItems = () => {
       reject(error);
     }
   });
+};
+
+export const getFormattedFutureDates = (days) => {
+  const formattedDates = [];
+  for (let d = 0; d < days; d++) {
+    let formattedDate;
+    let date = moment().add(d, "days");
+    switch (d) {
+      case 0:
+        formattedDate = { label: "Today", date: date.toDate() };
+        break;
+
+      case 1:
+        formattedDate = { label: "Tomorrow", date: date.toDate() };
+        break;
+
+      default:
+        formattedDate = {
+          label: date.format("ddd, D MMM"),
+          date: date.toDate(),
+        };
+        break;
+    }
+    formattedDates.push(formattedDate);
+  }
+  return formattedDates;
 };

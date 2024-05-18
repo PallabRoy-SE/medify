@@ -4,6 +4,7 @@ export const colors = {
   white: "#FFFFFF",
   black: "#000000",
   dark: "#102851",
+  blue: "#2AA7FF",
   smokeDark: "#414146",
   lightGrey: "#5C6169",
   bgGrey: "#9CA3AF",
@@ -13,6 +14,8 @@ export const colors = {
   textDeepGreen: "#02A401",
   inputBgLight: "#FAFBFE",
   borderLight: "#F0F0F0",
+  borderTab: "#F0F0F5",
+  iconBorder: "#E0E0E4",
   skyBlue: "#14BEF0",
   borderGrey: "#E8E8F0",
   background:
