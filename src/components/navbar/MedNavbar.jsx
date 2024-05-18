@@ -8,12 +8,14 @@ import Button from "@mui/material/Button";
 import { colors } from "../../theme/variables";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import MedButton from "../button/MedButton";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function MedNavbar({ links }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const active = links.some((link) => link.to === location.pathname);
+  const active = links.some((link) =>
+    location.pathname.split("/").includes(link.to)
+  );
   return (
     <AppBar
       position="static"
@@ -24,23 +26,34 @@ function MedNavbar({ links }) {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <Logo />
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{
-              ml: 0.5,
-              display: { xs: "none", md: "flex" },
-              fontWeight: 700,
-              color: colors.primary,
-              textDecoration: "none",
-              fontSize: "1.12rem",
-              letterSpacing: "0.02em",
-              cursor: "pointer",
+          <Link
+            to="/"
+            state={links?.[0]?.state}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            Medify
-          </Typography>
+            <Logo />
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                ml: 0.5,
+                display: { xs: "none", md: "flex" },
+                fontWeight: 700,
+                color: colors.primary,
+                textDecoration: "none",
+                fontSize: "1.12rem",
+                letterSpacing: "0.02em",
+                cursor: "pointer",
+              }}
+            >
+              Medify
+            </Typography>
+          </Link>
           <Box
             sx={{
               flexGrow: 1,
@@ -67,8 +80,10 @@ function MedNavbar({ links }) {
                     fontWeight: 600,
                   },
                 }}
-                className={location.pathname === link.to ? "active" : ""}
-                onClick={() => navigate(link.to)}
+                className={
+                  location.pathname.split("/").includes(link.to) ? "active" : ""
+                }
+                onClick={() => navigate(link.to, { state: link.state })}
               >
                 {link.label}
               </Button>

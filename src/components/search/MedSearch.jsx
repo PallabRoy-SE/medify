@@ -1,11 +1,40 @@
 import { LocationOnOutlined, Search } from "@mui/icons-material";
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MedAutocomplete from "../autocomplete/MedAutocomplete";
 import MedButton from "../button/MedButton";
 import { colors } from "../../theme/variables";
+import { getCities } from "../../services/searchService";
 
-function MedSearch() {
+function MedSearch({ states = [], getValue }) {
+  const [cities, setCities] = useState([]);
+  const [selectedState, selectState] = useState("");
+  const [selectedCity, selectCity] = useState("");
+
+  const loadCities = async (state) => {
+    if (state) {
+      try {
+        const resCities = await getCities(selectedState);
+        setCities(() => [...resCities]);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      selectCity("");
+      setCities(() => []);
+    }
+  };
+
+  const handleSearchClick = () => {
+    if (getValue && typeof getValue === "function") {
+      getValue({ state: selectedState, city: selectedCity });
+    }
+  };
+
+  useEffect(() => {
+    loadCities(selectedState);
+  }, [selectedState]);
+
   return (
     <Box
       component="section"
@@ -19,7 +48,7 @@ function MedSearch() {
       }}
     >
       <MedAutocomplete
-        options={[]}
+        options={states}
         placeholder="State"
         startIcon={
           <LocationOnOutlined
@@ -29,13 +58,13 @@ function MedSearch() {
             }}
           />
         }
-        onChange={(e, c) => console.log(c)}
+        onChange={(event, newValue) => selectState(newValue)}
         sx={{
           width: "30%",
         }}
       />
       <MedAutocomplete
-        options={[]}
+        options={cities}
         placeholder="City"
         startIcon={
           <LocationOnOutlined
@@ -45,7 +74,7 @@ function MedSearch() {
             }}
           />
         }
-        onChange={(e, c) => console.log(c)}
+        onChange={(event, newCity) => selectCity(newCity)}
         sx={{
           width: "50%",
         }}
@@ -58,6 +87,7 @@ function MedSearch() {
             }}
           />
         }
+        onClick={handleSearchClick}
       >
         Search
       </MedButton>
