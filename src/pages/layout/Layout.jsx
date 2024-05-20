@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../home/Home";
 import { getNavItems } from "../../services/genericService";
 import Hospitals from "../hospitals/Hospitals";
+import MyBookings from "../my-bookings/MyBookings";
 
 function Layout() {
   const [routes, setRoutes] = useState([]);
@@ -29,6 +30,7 @@ function Layout() {
       <Routes>
         <Route path="/" Component={Home} />
         <Route path="hospitals" Component={Hospitals} />
+        <Route path="my-bookings" Component={MyBookings} />
         <Route path="*" element={<div>Not Found!</div>} />
       </Routes>
     </Box>

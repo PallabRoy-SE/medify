@@ -89,7 +89,12 @@ function MedNavbar({ links }) {
               </Button>
             ))}
 
-            <MedButton sx={{ marginLeft: "1rem" }}>My Bookings</MedButton>
+            <MedButton
+              sx={{ marginLeft: "1rem" }}
+              onClick={() => navigate("/my-bookings")}
+            >
+              My Bookings
+            </MedButton>
           </Box>
         </Toolbar>
       </Container>

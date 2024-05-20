@@ -8,6 +8,7 @@ import { ThumbUp } from "@mui/icons-material";
 import hospitalLogo from "../../assets/hospital.png";
 import MedBookingConfig from "../booking-config/MedBookingConfig";
 import useLocalStorage from "../../hooks/localStorage";
+import moment from "moment";
 
 function MedHospitalDetails({
   id,
@@ -18,6 +19,7 @@ function MedHospitalDetails({
   type,
   likes,
   hospitalData,
+  bookingData,
 }) {
   const [bookConfig, toggleBookConfig] = useState(false);
   const [dateTime, setDateTime] = useState(null);
@@ -106,49 +108,57 @@ function MedHospitalDetails({
             >
               {type}
             </Typography>
-            <Typography
-              component="p"
-              fontSize="0.875rem"
-              color={colors.smokeDark}
-              mt={0.5}
-              pb={1.5}
-              borderBottom="1px dashed"
-              borderColor={colors.borderGrey}
-            >
+            {!bookingData ? (
               <Typography
-                component="span"
-                color={colors.textDeepGreen}
-                fontWeight={700}
+                component="p"
+                fontSize="0.875rem"
+                color={colors.smokeDark}
+                mt={0.5}
+                pb={1.5}
+                borderBottom={!bookConfig ? "1px dashed" : "none"}
+                borderColor={colors.borderGrey}
               >
-                FREE
-              </Typography>{" "}
-              <Typography
-                component="span"
-                color={colors.textGrey}
-                sx={{
-                  textDecoration: "line-through",
-                }}
-              >
-                ₹500
-              </Typography>{" "}
-              Consultation fee at clinic
-            </Typography>
+                <Typography
+                  component="span"
+                  color={colors.textDeepGreen}
+                  fontWeight={700}
+                >
+                  FREE
+                </Typography>{" "}
+                <Typography
+                  component="span"
+                  color={colors.textGrey}
+                  sx={{
+                    textDecoration: "line-through",
+                  }}
+                >
+                  ₹500
+                </Typography>{" "}
+                Consultation fee at clinic
+              </Typography>
+            ) : (
+              <Box mt={0.5} pb={1.5} visibility="hidden">
+                ''
+              </Box>
+            )}
             <Box component="div" mt={2}>
-              <MedButton
-                sx={{
-                  backgroundColor: colors.green,
-                  padding: 0,
-                  minWidth: "40px",
-                  borderRadius: "3.5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-                size="small"
-              >
-                <ThumbUp sx={{ marginRight: "0.2rem", fontSize: "1rem" }} />{" "}
-                {likes}
-              </MedButton>
+              {!bookConfig ? (
+                <MedButton
+                  sx={{
+                    backgroundColor: colors.green,
+                    padding: 0,
+                    minWidth: "40px",
+                    borderRadius: "3.5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                  size="small"
+                >
+                  <ThumbUp sx={{ marginRight: "0.2rem", fontSize: "1rem" }} />{" "}
+                  {likes}
+                </MedButton>
+              ) : null}
             </Box>
           </Grid2>
           <Grid2
@@ -172,31 +182,39 @@ function MedHospitalDetails({
                 width: "100%",
               }}
             >
-              <Button variant="outlined" size="small" color="primary">
-                10:30 AM
-              </Button>
-              <Button variant="outlined" size="small" color="success">
-                20 April 2024
-              </Button>
+              {bookingData?.time ? (
+                <Button variant="outlined" size="small" color="primary">
+                  {bookingData.time}
+                </Button>
+              ) : null}
+              {bookingData?.date ? (
+                <Button variant="outlined" size="small" color="success">
+                  {moment(bookingData.date).format("DD MMM yyyy")}
+                </Button>
+              ) : null}
             </Box>
             <Box component="div" width="100%">
-              <Typography
-                component="p"
-                align="center"
-                color={colors.textGreen}
-                fontSize="0.875rem"
-                mb={1}
-              >
-                Available Today
-              </Typography>
-              <MedButton
-                sx={{
-                  width: "100%",
-                }}
-                onClick={() => handleBooking()}
-              >
-                Book FREE Center Visit
-              </MedButton>
+              {!bookingData ? (
+                <>
+                  <Typography
+                    component="p"
+                    align="center"
+                    color={colors.textGreen}
+                    fontSize="0.875rem"
+                    mb={1}
+                  >
+                    Available Today
+                  </Typography>
+                  <MedButton
+                    sx={{
+                      width: "100%",
+                    }}
+                    onClick={() => handleBooking()}
+                  >
+                    Book FREE Center Visit
+                  </MedButton>
+                </>
+              ) : null}
             </Box>
           </Grid2>
         </Grid2>
