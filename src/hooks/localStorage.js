@@ -15,7 +15,7 @@ export default function useLocalStorage(key, value) {
       localValue = JSON.parse(localValue);
       return localValue;
     }
-    return null;
+    return [];
   });
 
   const updateData = (fnOrVale) => {
