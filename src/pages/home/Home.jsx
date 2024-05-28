@@ -16,9 +16,10 @@ function Home() {
         sx={{
           position: "relative",
           marginTop: "-6rem",
+          pb: 4,
         }}
       >
-        <MedCardContainer>
+        <MedCardContainer sx={{ pb: 4 }}>
           <MedSearchCard states={states} />
         </MedCardContainer>
       </Container>
