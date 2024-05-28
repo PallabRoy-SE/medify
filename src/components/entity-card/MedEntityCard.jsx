@@ -16,6 +16,7 @@ function MedEntityCard({ Logo, title, backgroundColor, elevate, active, sx }) {
         backgroundColor: active ? colors.cardBgLightBlue : backgroundColor,
         borderRadius: "0.5rem",
         border: active ? `1px solid ${colors.blue}` : "none",
+        boxShadow: elevate ? "0px 34px 44px 0px #D5DBE470" : "none",
         ...sx,
       }}
     >

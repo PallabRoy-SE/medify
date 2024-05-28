@@ -38,6 +38,7 @@ function MedOfferCarousel({ sx }) {
         component="div"
         className="swiper-pagination"
         sx={{
+          position: "static",
           "& .swiper-pagination-bullet-active": {
             position: "relative",
             background: colors.blue,
@@ -52,6 +53,7 @@ function MedOfferCarousel({ sx }) {
               top: "-4px",
             },
           },
+          mt: 3,
         }}
       />
     </Box>

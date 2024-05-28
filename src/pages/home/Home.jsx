@@ -1,11 +1,12 @@
 import React from "react";
 import MedHeroSection from "../../components/hero-section/MedHeroSection";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import MedCardContainer from "../../components/card-container/MedCardContainer";
 import MedSearchCard from "../../components/search-card/MedSearchCard";
 import useGeneric from "../../hooks/genericHook";
 import MedOfferCarousel from "../../components/offer-carousel/MedOfferCarousel";
 import { colors } from "../../theme/variables";
+import MedFindBySpecialization from "../../components/find-by-specialization/MedFindBySpecialization";
 
 function Home() {
   const { states } = useGeneric();
@@ -31,14 +32,22 @@ function Home() {
         px={8}
         sx={{
           backgroundColor: colors.white,
-          position: "relative",
           paddingTop: "8rem",
-          paddingBottom: "4rem",
+          paddingBottom: "2rem",
           marginTop: "-6rem",
         }}
       >
         <MedOfferCarousel />
       </Box>
+      <Container
+        component="section"
+        maxWidth="lg"
+        sx={{
+          py: 4,
+        }}
+      >
+        <MedFindBySpecialization />
+      </Container>
     </Box>
   );
 }
