@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MedNotice from "../../components/notice/MedNotice";
 import MedNavbar from "../../components/navbar/MedNavbar";
@@ -35,7 +35,14 @@ function Layout() {
         <Route path="/" Component={Home} />
         <Route path="hospitals" Component={Hospitals} />
         <Route path="my-bookings" Component={MyBookings} />
-        <Route path="*" element={<div>Not Found!</div>} />
+        <Route
+          path="*"
+          element={
+            <Typography component="p" variant="h1" textAlign="center">
+              Not Found!
+            </Typography>
+          }
+        />
       </Routes>
       <Box component="section" backgroundColor={colors.white}>
         <Container component="section" maxWidth="lg">
