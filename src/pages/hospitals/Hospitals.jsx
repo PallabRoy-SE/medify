@@ -16,15 +16,19 @@ function Hospitals() {
   const { states } = useGeneric();
   const [searchParams] = useSearchParams();
   const [hospitals, setHospitals] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState(searchParams.get("state"));
   const [city, setCity] = useState(searchParams.get("city"));
 
   const loadHospitals = async (state, city) => {
     try {
+      setLoading(true);
       const resHospitals = await getHospitals(state, city);
       setHospitals(() => [...resHospitals]);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,23 +107,27 @@ function Hospitals() {
         </Box>
         <Grid2 container spacing={3}>
           <Grid2 md={8}>
-            {hospitals.map((hospital) => (
-              <MedHospitalDetails
-                key={hospital["Provider ID"]}
-                id={hospital["Provider ID"]}
-                title={hospital["Hospital Name"]}
-                state={hospital.State}
-                city={hospital.City}
-                zipCode={hospital["ZIP Code"]}
-                type={hospital["Hospital Type"]}
-                likes={
-                  hospital["Hospital overall rating"] !== "Not Available"
-                    ? hospital["Hospital overall rating"]
-                    : 0
-                }
-                hospitalData={hospital}
-              />
-            ))}
+            {!loading ? (
+              hospitals.map((hospital) => (
+                <MedHospitalDetails
+                  key={hospital["Provider ID"]}
+                  id={hospital["Provider ID"]}
+                  title={hospital["Hospital Name"]}
+                  state={hospital.State}
+                  city={hospital.City}
+                  zipCode={hospital["ZIP Code"]}
+                  type={hospital["Hospital Type"]}
+                  likes={
+                    hospital["Hospital overall rating"] !== "Not Available"
+                      ? hospital["Hospital overall rating"]
+                      : 0
+                  }
+                  hospitalData={hospital}
+                />
+              ))
+            ) : (
+              <Typography variant="body1">Loading...</Typography>
+            )}
           </Grid2>
           <Grid2 md={4}>
             <Box
