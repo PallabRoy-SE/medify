@@ -1,6 +1,6 @@
 import React from "react";
 import MedHeroSection from "../../components/hero-section/MedHeroSection";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import MedCardContainer from "../../components/card-container/MedCardContainer";
 import MedSearchCard from "../../components/search-card/MedSearchCard";
 import useGeneric from "../../hooks/genericHook";
@@ -8,6 +8,7 @@ import MedOfferCarousel from "../../components/offer-carousel/MedOfferCarousel";
 import { colors } from "../../theme/variables";
 import MedFindBySpecialization from "../../components/find-by-specialization/MedFindBySpecialization";
 import MedSpecialistCarousel from "../../components/specialist-carousel/MedSpecialistCarousel";
+import { ReactComponent as PatientCaring } from "../../assets/patient_caring/patient-caring.svg";
 
 function Home() {
   const { states } = useGeneric();
@@ -55,11 +56,20 @@ function Home() {
         sx={{
           backgroundColor: colors.white,
           paddingTop: "4rem",
-          paddingBottom: "2rem",
+          paddingBottom: "4rem",
         }}
       >
         <MedSpecialistCarousel />
       </Box>
+      <Container
+        component="section"
+        maxWidth="lg"
+        sx={{
+          py: 8,
+        }}
+      >
+        <PatientCaring />
+      </Container>
     </Box>
   );
 }
