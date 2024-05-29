@@ -11,7 +11,6 @@ import MedSpecialistCarousel from "../../components/specialist-carousel/MedSpeci
 import { ReactComponent as PatientCaring } from "../../assets/patient_caring/patient-caring.svg";
 import { ReactComponent as Blogs } from "../../assets/blogs/blogs.svg";
 import { ReactComponent as Families } from "../../assets/families/families.svg";
-import { ReactComponent as Faq } from "../../assets/faq/faq.svg";
 
 function Home() {
   const { states } = useGeneric();
@@ -81,11 +80,6 @@ function Home() {
       <Container component="section" maxWidth="lg">
         <Families />
       </Container>
-      <Box component="section" backgroundColor={colors.white}>
-        <Container component="section" maxWidth="lg">
-          <Faq />
-        </Container>
-      </Box>
     </Box>
   );
 }
