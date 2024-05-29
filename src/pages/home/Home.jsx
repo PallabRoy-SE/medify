@@ -9,6 +9,7 @@ import { colors } from "../../theme/variables";
 import MedFindBySpecialization from "../../components/find-by-specialization/MedFindBySpecialization";
 import MedSpecialistCarousel from "../../components/specialist-carousel/MedSpecialistCarousel";
 import { ReactComponent as PatientCaring } from "../../assets/patient_caring/patient-caring.svg";
+import { ReactComponent as Blogs } from "../../assets/blogs/blogs.svg";
 
 function Home() {
   const { states } = useGeneric();
@@ -70,6 +71,11 @@ function Home() {
       >
         <PatientCaring />
       </Container>
+      <Box component="section" backgroundColor={colors.white}>
+        <Container component="section" maxWidth="lg">
+          <Blogs />
+        </Container>
+      </Box>
     </Box>
   );
 }
