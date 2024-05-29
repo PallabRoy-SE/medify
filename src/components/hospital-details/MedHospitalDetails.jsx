@@ -211,7 +211,7 @@ function MedHospitalDetails({
                     }}
                     onClick={() => handleBooking()}
                   >
-                    Book FREE Center Visit
+                    {bookConfig ? "Book" : "Book FREE Center Visit"}
                   </MedButton>
                 </>
               ) : null}

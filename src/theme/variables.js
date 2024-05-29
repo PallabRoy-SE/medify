@@ -18,6 +18,8 @@ export const colors = {
   iconBorder: "#E0E0E4",
   skyBlue: "#14BEF0",
   borderGrey: "#E8E8F0",
+  cardTextGrey: "#ABB6C7",
+  cardBgLightBlue: "#2AA7FF14",
   background:
     "linear-gradient(81deg, #E7F0FF 9.01%, rgba(232, 241, 255, 0.47) 89.11%)",
   headerBg: "linear-gradient(91.75deg, #2AA7FF 1.4%, #0C8CE6 100.57%)",
