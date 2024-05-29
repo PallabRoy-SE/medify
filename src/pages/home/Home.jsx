@@ -7,6 +7,7 @@ import useGeneric from "../../hooks/genericHook";
 import MedOfferCarousel from "../../components/offer-carousel/MedOfferCarousel";
 import { colors } from "../../theme/variables";
 import MedFindBySpecialization from "../../components/find-by-specialization/MedFindBySpecialization";
+import MedSpecialistCarousel from "../../components/specialist-carousel/MedSpecialistCarousel";
 
 function Home() {
   const { states } = useGeneric();
@@ -48,6 +49,17 @@ function Home() {
       >
         <MedFindBySpecialization />
       </Container>
+      <Box
+        component="section"
+        px={8}
+        sx={{
+          backgroundColor: colors.white,
+          paddingTop: "4rem",
+          paddingBottom: "2rem",
+        }}
+      >
+        <MedSpecialistCarousel />
+      </Box>
     </Box>
   );
 }
